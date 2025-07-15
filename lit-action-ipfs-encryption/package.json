@@ -1,0 +1,22 @@
+{
+  "name": "lit-action-ipfs-encryption",
+  "version": "1.0.0",
+  "description": "",
+  "main": "ipfs_decrypt.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@lit-protocol/auth-helpers": "^5.1.0",
+    "@lit-protocol/constants": "^7.1.2",
+    "@lit-protocol/contracts-sdk": "^3.2.1",
+    "@lit-protocol/encryption": "^7.2.0",
+    "@lit-protocol/lit-node-client": "^7.2.0",
+    "dotenv": "^17.2.0",
+    "ethers": "^5.8.0",
+    "inquirer": "^12.7.0"
+  }
+}
