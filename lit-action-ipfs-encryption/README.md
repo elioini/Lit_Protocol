@@ -185,8 +185,8 @@ If the user meets the access control requirements (e.g., a LitAction returns tru
 1. **Clone the repository:**
 
 ```bash
-git clone https://github.com/elioini/Lit_Protocol/lit-action-ipfs-encryption
-cd lit-action-ipfs-encryption
+git clone git@github.com:elioini/Lit_Protocol.git
+cd Lit_Protocol/lit-action-ipfs-encryption
 ```
 
 2. **Install dependencies:**
