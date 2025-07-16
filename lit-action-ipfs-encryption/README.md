@@ -1,6 +1,6 @@
 # 🔐 Lit Protocol Simple Encryption/Decryption using Lit Action Example
 
-This repository contains a simple working example of encrypting and decrypting a string using [Lit Protocol](https://litprotocol.com/). It uses a LitAction hosted on IPFS as the access control mechanism. The example runs on the DatilDev test network and demonstrates how to:
+This is a simple working example of encrypting and decrypting a string using [Lit Protocol](https://litprotocol.com/). Adapted from Lit Protocol's official  [repository example](https://github.com/LIT-Protocol/js-serverless-function-test/blob/main/js-sdkTests/decrypt.js) and [documentation](https://developer.litprotocol.com/sdk/access-control/lit-action-conditions). This demo uses a LitAction hosted on IPFS for access control. It runs on the DatilDev test network and demonstrates how to:
 
 - Connect to Lit nodes
 - Generate an `authSig` using Sign-In With Ethereum (SIWE)
@@ -12,7 +12,7 @@ This repository contains a simple working example of encrypting and decrypting a
 ## 📁 Project Structure
 
 ```
-.
+lit-action-ipfs-encryption
 ├── index.js        # Main logic for encryption/decryption
 ├── utils.js        # AuthSig generation using ethers and SIWE
 ├── .env            # Environment variable with private key
@@ -64,7 +64,7 @@ const siweMessage = new siwe.SiweMessage({
   statement: "This is a test statement.",
   uri: "https://localhost/login",
   version: "1",
-  chainId: 11155111,
+  chainId: 11155111, // Sepolia Testnet
   expirationTime: new Date(Date.now() + 60 * 60 * 1000).toISOString(),
 });
 const signature = await wallet.signMessage(siweMessage.prepareMessage());
@@ -117,7 +117,7 @@ const accessControlConditions = [
 
 - returnValueTest: Defines the expected result from the LitAction. The condition passes if the method returns "true".
 
-This IPFS-hosted LitAction controls whether decryption is allowed. This is a sample LitAction function that fetches the current weather forecast and checks if the temperature is below a given threshold:
+This IPFS-hosted LitAction controls whether decryption is allowed. This is a sample LitAction function that fetches the current weather forecast and checks if the temperature is below a given threshold (100):
 
 ```js
 const go = async (maxTemp) => {
@@ -159,7 +159,7 @@ The encryptString function returns:
 
 - dataToEncryptHash: A hash of the original plaintext used for validation during decryption.
 
-This encrypted data can now be safely stored or transmitted — only authorized users (as defined by the access conditions) will be able to decrypt it.
+The encrypted data can now be securely stored or transmitted. Only users who meet the defined access conditions will be able to decrypt it. In this example, rather than restricting access to specific wallet addresses, we allow decryption for anyone who satisfies the LitAction’s logic (i.e., providing an input that makes it return true).
 
 ### 4. Decrypt the Message
 
@@ -225,11 +225,3 @@ Decrypted message:
 This is my secret message
 ```
 
----
-
-## 🧠 Concepts Used
-
-- **Lit Nodes:** Run the encryption/decryption logic
-- **AuthSig:** Proves you own an Ethereum address
-- **Access Control Conditions:** Define who can decrypt the content
-- **LitAction:** A programmable access logic hosted on IPFS
